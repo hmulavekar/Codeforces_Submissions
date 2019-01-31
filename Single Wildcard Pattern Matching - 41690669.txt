@@ -1,0 +1,84 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <set>
+#include <map>
+#include <queue>
+#include <unordered_map>
+#include <algorithm>
+#include <unordered_set>
+#include <iomanip>
+#include <climits>
+#define ll  long long int
+#define MOD 1000000007
+#define inf  20000000000000
+#define eps  0.0000000000001
+using namespace std ;
+ 
+
+
+
+int main()
+{
+  ios::sync_with_stdio(false);cin.tie(0) ;cout.tie(0) ;
+  ll n , m  ;cin>>n>>m ; 
+  string a  , b ;cin>>a>>b ;
+  if(m <  n - 1 )
+   {
+     cout<<"NO" ; 
+     return  0  ;
+    }
+
+  ll upto ,  from ;   
+  bool is  = false ; 
+  for(ll  i  = 0  ; i  < n ; ++i)
+  {
+     if(a[i] == '*')
+     {
+       upto =  i-1 ;  
+       from  = i + 1 ;
+        is  = true ;    
+       break ;  
+     }
+  }
+ if(!is)
+ {
+    if(a == b)
+      cout<<"YES" ;  
+    else
+      cout<<"NO\n" ;   
+    return  0  ;
+ }
+ string prefix =  "" ;  
+ string suffix   = "" ;  
+ for(ll  i = 0  ; i <= upto  ;++i)
+  prefix  += a[i] ;    
+ for(ll  i  = from   ;  i < n ; ++i)
+ suffix += a[i] ; 
+string cur ="" ;  
+bool aa = false ;
+reverse(suffix.begin()   ,suffix.end()) ;  
+for(ll  i  =  0 ;  i < m  ; ++i)
+{
+  if(cur == prefix) 
+    aa = true ;  
+   cur += b[i] ; 
+   if(cur == prefix) 
+    aa = true ;  
+}
+cur = "" ;
+bool bb  =false ;   
+for(ll  i  =  m - 1 ;  i >=  0 ; --i )
+{
+         if(cur == suffix)
+          bb  = true ;
+       cur += b[i] ;  
+            if(cur == suffix)
+          bb  = true ; 
+}
+if( (aa && bb) ) 
+cout<<"YES" ; 
+else
+cout<<"NO" ; 
+
+return   0 ; }
